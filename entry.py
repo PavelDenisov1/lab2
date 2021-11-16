@@ -1,4 +1,9 @@
 class entry:
+    '''
+      Объект класса entry.
+
+      Он нужен для представления структуры хранения записи.
+    '''
     telephone: str
     weight: str
     inn: str
@@ -10,6 +15,14 @@ class entry:
     address: str
 
     def __init__(self, dic: dict) -> None:
+        '''
+            Инициализирует экземпляр класса entry.
+
+            Parameters
+            ----------
+              dic: dict
+                Словарь с записью.
+        '''
         self.telephone = dic['telephone']
         self.weight = dic['weight']
         self.inn = dic['inn']
