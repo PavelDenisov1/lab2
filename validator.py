@@ -164,7 +164,7 @@ class validator:
         '''
         pattern = ''
         if key == 'telephone':
-            pattern = '\\+[0-9]-\\([0-9]{3}\\)\\-[0-9]{3}\\-[0-9]{2}\\-[0-9]{2}'
+            pattern = '^\\+[0-9]-\\([0-9]{3}\\)-[0-9]{3}-[0-9]{2}-[0-9]{2}$'
         elif key == 'weight':
             try:
                 float_weight = float(value)
@@ -174,9 +174,9 @@ class validator:
         elif key == 'inn':
             pattern = '^\\d{12}$'
         elif key == 'passport_series':
-            return len(str(value)) == 5
+            pattern = '^\\d{2}\\s\\d{2}$'
         elif key == 'occupation':
-            pattern = '[а-яА-Я]+'
+            pattern = '^[а-яА-Яa-zA-Z]+([\\s|-][а-яА-Яa-zA-Z]+|$)$'
         elif key == 'age':
             try:
                 int_age = int(value)
@@ -186,13 +186,13 @@ class validator:
         elif key == 'academic_degree':
             if self.number_degrees[value] < 200:
                 return False
-            pattern = '[a-zA-Zа-яА-Я]+'
+            pattern = '^[а-яА-Я]+([\\s|-][а-яА-Я]+|$)$'
         elif key == 'worldview':
             if self.number_worldviews[value] < 200:
                 return False
-            pattern = '[a-zA-Zа-яА-Я]+'
+            pattern = '^[а-яА-Я]+([\\s|-][а-яА-Я]+|$)$'
         elif key == 'address':
-            pattern = '.+[0-9]+'
+            pattern = '^[а-яА-Я]+[\\s|\\.]+[а-яА-Я\\s]+([0-9-]+[а-я]+\\s[0-9]+|\\s[0-9]+$)'
         if re.match(pattern, value):
             return True
         return False
